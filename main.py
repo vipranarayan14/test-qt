@@ -8,18 +8,16 @@ class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
 
-        self.windowTitleChanged.connect(self.on_window_title_change)
         self.setWindowTitle('Learning Qt with PyQt')
 
         label = QLabel('Hi, this is my first Qt app!')
         label.setAlignment(Qt.AlignCenter)
         self.setCentralWidget(label)
 
-    # have to use this "decorater" if 'self' or 'cls' is not a arg for the a class method
-    @staticmethod
-    def on_window_title_change(event):
-        '''Prints the new title.'''
-        print(event)
+    def contextMenuEvent(self, event):
+        '''Handle right-click menu event.'''
+        print('I wont show Context Menu')
+        super(MainWindow, self).contextMenuEvent(event)
 
 APP = QApplication([])
 
