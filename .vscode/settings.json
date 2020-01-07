@@ -1,0 +1,4 @@
+{
+  "python.pythonPath": "/Users/prasanna/Documents/Projects/Programming/test-qt/.venv/bin/python3.7",
+  "python.linting.pylintArgs": ["--extension-pkg-whitelist=PyQt5"]
+}
