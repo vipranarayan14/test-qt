@@ -1,5 +1,5 @@
 '''Python bindings for qt5.'''
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
+from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
 
 class MainWindow(QMainWindow):
@@ -10,14 +10,34 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle('Learning Qt with PyQt')
 
-        label = QLabel('Hi, this is my first Qt app!')
-        label.setAlignment(Qt.AlignCenter)
-        self.setCentralWidget(label)
+        layout = QVBoxLayout()
 
-    def contextMenuEvent(self, event):
-        '''Handle right-click menu event.'''
-        print('I wont show Context Menu')
-        super(MainWindow, self).contextMenuEvent(event)
+        widgets = [
+            QCheckBox,
+            QDateEdit,
+            QDateTimeEdit,
+            QDial,
+            QDoubleSpinBox,
+            QFontComboBox,
+            QLCDNumber,
+            QLabel,
+            QLineEdit,
+            QProgressBar,
+            QPushButton,
+            QRadioButton,
+            QSlider,
+            QSpinBox,
+            QTimeEdit
+        ]
+
+        for widget in widgets:
+            layout.addWidget(QLabel(widget.__doc__))
+            layout.addWidget(widget())
+
+        central_widget = QWidget()
+        central_widget.setLayout(layout)
+
+        self.setCentralWidget(central_widget)
 
 APP = QApplication([])
 
