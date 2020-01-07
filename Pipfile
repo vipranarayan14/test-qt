@@ -8,6 +8,7 @@ pylint = "*"
 
 [packages]
 pyqt5 = "*"
+wand = "*"
 
 [requires]
 python_version = "3.7"

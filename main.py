@@ -1,6 +1,9 @@
 '''Python bindings for qt5.'''
-from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
+
+from wand.image import Image
 
 class MainWindow(QMainWindow):
     '''Subclass extending QMainWindow for customization.'''
@@ -10,34 +13,13 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle('Learning Qt with PyQt')
 
-        layout = QVBoxLayout()
+        img = Image(filename='../vmono/samples/9.jpg')
+        img.threshold(0.5)
 
-        widgets = [
-            QCheckBox,
-            QDateEdit,
-            QDateTimeEdit,
-            QDial,
-            QDoubleSpinBox,
-            QFontComboBox,
-            QLCDNumber,
-            QLabel,
-            QLineEdit,
-            QProgressBar,
-            QPushButton,
-            QRadioButton,
-            QSlider,
-            QSpinBox,
-            QTimeEdit
-        ]
+        image_preview = QLabel()
+        image_preview.setPixmap(QPixmap.fromImage(QImage.fromData(img.make_blob())))
 
-        for widget in widgets:
-            layout.addWidget(QLabel(widget.__doc__))
-            layout.addWidget(widget())
-
-        central_widget = QWidget()
-        central_widget.setLayout(layout)
-
-        self.setCentralWidget(central_widget)
+        self.setCentralWidget(image_preview)
 
 APP = QApplication([])
 
